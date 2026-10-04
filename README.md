@@ -166,11 +166,24 @@ configuration
 
 ---
 
+## 3. Secundair onderwijs
+
+De focus van deze repository ligt op het **basisonderwijs** (Navigator BaO). Voor het **secundair onderwijs** zijn er twee bronnen beschikbaar:
+
+- een statische **JSON-export** van de GO!-leerplannen secundair onderwijs ([`documentatie/GO-leerplannen-secundair_2025-09.json`](documentatie/GO-leerplannen-secundair_2025-09.json));
+- de **Leerplannen API** die GO! Navigator zelf gebruikt, met base URL `https://g-o.smartschool.be/navigator/api/v1`.
+
+> **Let op:** voor deze API werd **geen documentatie voorzien door Smartschool**. De Postman-collectie [`documentatie/navigator-so-leerplannen-api.postman_collection.json`](documentatie/navigator-so-leerplannen-api.postman_collection.json) werd zelf samengesteld op basis van de netwerkverzoeken van de Navigator-webapplicatie. Routes en responsemodellen kunnen zonder aankondiging wijzigen. Zie de [bijhorende readme](documentatie/navigator-so-leerplannen-api.postman_collection.readme.md).
+
+---
+
 ## Samengevat
 
 Gebruik de **Navigator Selector** wanneer een gebruiker zelf leerplandoelen moet kiezen.
 
-Gebruik de **Curriculum API** wanneer curriculumdata programmatisch moet worden uitgelezen.
+Gebruik de **Curriculum API** wanneer curriculumdata voor het basisonderwijs programmatisch moet worden uitgelezen.
+
+Gebruik voor het **secundair onderwijs** de JSON-export of de Leerplannen API van GO! Navigator (zonder officiële documentatie).
 
 ---
 
@@ -180,8 +193,10 @@ Dit project is bedoeld als technisch integratievoorbeeld.
 
 Zowel het Selector-protocol als de Curriculum API zijn officieel gedocumenteerd (zie [`documentatie/`](documentatie/README.md)) en kunnen in de toekomst wijzigen.
 
+De Leerplannen API voor het secundair onderwijs werd niet door Smartschool gedocumenteerd; de beschrijving in deze repository is afgeleid uit het gebruik door de Navigator-webapplicatie zelf.
+
 ---
 
 ## Documentatie
 
-De map [`documentatie/`](documentatie/README.md) bevat de officiële Selector-protocolspecificatie, de officiële OpenAPI-specificatie van de Curriculum API, een Postman-collectie, een JSON-export van de leerplannen secundair onderwijs, de kenniskaart leerplanconcept, en info over de openbare (publieke) versie van GO! Navigator. Zie [`documentatie/README.md`](documentatie/README.md) voor het overzicht.
+De map [`documentatie/`](documentatie/README.md) bevat de officiële Selector-protocolspecificatie, de officiële OpenAPI-specificatie van de Curriculum API, een Postman-collectie, een Postman-collectie voor de Leerplannen API secundair onderwijs, een JSON-export van de leerplannen secundair onderwijs, de kenniskaart leerplanconcept, en info over de openbare (publieke) versie van GO! Navigator. Zie [`documentatie/README.md`](documentatie/README.md) voor het overzicht.

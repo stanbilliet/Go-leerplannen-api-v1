@@ -9,6 +9,7 @@ Aanvullende documentatie bij de GO! Navigator BaO integratiedemo (zie de [hoofd-
 | [`navigator-bao-selector-postmessage-protocol.pdf`](navigator-bao-selector-postmessage-protocol.pdf) | Officiële documentatie van het `postMessage`-protocol om te communiceren met de GO! Navigator BaO Selector (command/event messages, integratiegids, volledige message schema's). |
 | [`navigator-bao-curricula-api.openapi.yaml`](navigator-bao-curricula-api.openapi.yaml) | OpenAPI 3.0-specificatie van de officiële Navigator BaO Curricula API (endpoints, schema's, foutafhandeling). |
 | [`navigator-bao-curricula-api.postman_collection.json`](navigator-bao-curricula-api.postman_collection.json) | Postman-collectie om de API manueel te testen. Zie de bijhorende [readme](navigator-bao-curricula-api.postman_collection.readme.md). |
+| [`navigator-so-leerplannen-api.postman_collection.json`](navigator-so-leerplannen-api.postman_collection.json) | Postman-collectie voor de Leerplannen API van GO! Navigator secundair onderwijs. Niet gedocumenteerd door Smartschool, zelf samengesteld op basis van het netwerkverkeer van Navigator. Zie de bijhorende [readme](navigator-so-leerplannen-api.postman_collection.readme.md). |
 | [`GO-leerplannen-secundair_2025-09.json`](GO-leerplannen-secundair_2025-09.json) | JSON-export van de GO!-leerplannen secundair onderwijs (september 2025). |
 | [`kenniskaart-leerplanconcept.pdf`](kenniskaart-leerplanconcept.pdf) | Kenniskaart leerplanconcept (structuur, visie, opbouw doelenset, MIA, samenhang). |
 
@@ -33,6 +34,26 @@ Er is ook een statische JSON-export beschikbaar van het leerplan secundair onder
 Deze staat, als momentopname van september 2025, ook lokaal in deze map: [`GO-leerplannen-secundair_2025-09.json`](GO-leerplannen-secundair_2025-09.json).
 
 > **Let op:** gebruik voor de actuele, up-to-date versie van de leerplannen steeds **https://pro.g-o.be/themas/leerplannen/go-navigator/** — de lokale JSON-kopie hierboven is enkel een momentopname en kan verouderd zijn.
+
+## Leerplannen API secundair onderwijs
+
+Naast de statische JSON-export kunnen de leerplannen secundair onderwijs ook rechtstreeks opgehaald worden via de API die GO! Navigator zelf gebruikt:
+
+```text
+https://g-o.smartschool.be/navigator/api/v1
+```
+
+> **Let op:** voor deze API werd **geen documentatie voorzien door Smartschool**. De Postman-collectie [`navigator-so-leerplannen-api.postman_collection.json`](navigator-so-leerplannen-api.postman_collection.json) werd zelf samengesteld op basis van de netwerkverzoeken van de Navigator-webapplicatie. Routes en responsemodellen kunnen zonder aankondiging wijzigen.
+
+Belangrijkste routes:
+
+- `GET /leerplannen/list` – lijst van alle leerplannen;
+- `GET /leerplannen/{leerplanId}` – metadata van één leerplan;
+- `GET /leerplannen/{leerplanId}/structure/{schooljaar}` – volledige structuur van een leerplan (bv. schooljaar `2026-2027`);
+- `GET /leerplannen/{leerplanId}/{schooljaar}/combined-view` – gekoppelde weergave (bv. basisvorming);
+- `GET /global-labels/available` – beschikbare globale labels.
+
+Zie de [readme bij de collectie](navigator-so-leerplannen-api.postman_collection.readme.md) voor de details.
 
 ## Kenniskaart leerplanconcept
 

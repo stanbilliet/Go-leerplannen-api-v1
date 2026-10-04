@@ -1,0 +1,246 @@
+{
+  "info": {
+    "_postman_id": "9fe83f0d-33c9-46fe-b4ff-833dd44dc1be",
+    "name": "GO! Navigator Secundair - Leerplannen API",
+    "description": "API-routes van GO! Navigator (secundair onderwijs) op Smartschool.\n\nLet op: voor deze API werd geen documentatie voorzien door Smartschool. Deze collectie werd zelf samengesteld op basis van de netwerkverzoeken die de webapplicatie GO! Navigator (https://g-o.smartschool.be/navigator/leerplannen) uitvoert, vastgelegd in een HAR-export.\n\nDe collectie bevat enkel GET-routes die in die sessie effectief voorkwamen. Bij deze API-calls werden geen Authorization-, Cookie- of CSRF-headers meegestuurd.\n\nOmdat de API niet publiek gedocumenteerd is, kunnen routes en responsemodellen zonder aankondiging wijzigen.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://g-o.smartschool.be",
+      "type": "string"
+    },
+    {
+      "key": "leerplanId",
+      "value": "76f187bd-4a96-4c0c-b102-3fbeb5dc7aeb",
+      "type": "string"
+    },
+    {
+      "key": "schooljaar",
+      "value": "2026-2027",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Leerplannen",
+      "item": [
+        {
+          "name": "Lijst leerplannen",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/navigator/api/v1/leerplannen/list",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "navigator",
+                "api",
+                "v1",
+                "leerplannen",
+                "list"
+              ]
+            },
+            "description": "Route die de Navigator zelf gebruikt om de beschikbare leerplannen op te halen. In de HAR gaf deze route 580 items terug. Elk item bevat o.a. id, title, number, extraInformation, isVisible, metadata en capabilities. Gebruik `id` als `leerplanId`."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Response is an array', () => pm.expect(pm.response.json()).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Leerplan details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/navigator/api/v1/leerplannen/{{leerplanId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "navigator",
+                "api",
+                "v1",
+                "leerplannen",
+                "{{leerplanId}}"
+              ]
+            },
+            "description": "Haalt de metadata van één leerplan op. De waargenomen response bevat o.a. id, group, number, title, image, isVisible, granteeGroupId, capabilities, infoBlocks en metadata."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Correct leerplan ID', () => pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('leerplanId')));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Leerplanstructuur",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/navigator/api/v1/leerplannen/{{leerplanId}}/structure/{{schooljaar}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "navigator",
+                "api",
+                "v1",
+                "leerplannen",
+                "{{leerplanId}}",
+                "structure",
+                "{{schooljaar}}"
+              ]
+            },
+            "description": "Haalt de hiërarchische structuur van één leerplan op voor het gekozen schooljaar. De waargenomen response bevat o.a. id, title, type, part, metadata, children en config."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Heeft children', () => pm.expect(pm.response.json()).to.have.property('children'));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "Combined view",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/navigator/api/v1/leerplannen/{{leerplanId}}/{{schooljaar}}/combined-view",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "navigator",
+                "api",
+                "v1",
+                "leerplannen",
+                "{{leerplanId}}",
+                "{{schooljaar}}",
+                "combined-view"
+              ]
+            },
+            "description": "Haalt de gecombineerde weergave op die Navigator gebruikt naast de eigen leerplanstructuur. Voor het voorbeeldleerplan gaf de HAR een array terug met de gekoppelde basisvorming 'Basisvorming • arbeidsmarktfinaliteit • 3e graad'."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Response is an array', () => pm.expect(pm.response.json()).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Labels",
+      "item": [
+        {
+          "name": "Beschikbare globale labels",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/navigator/api/v1/global-labels/available",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "navigator",
+                "api",
+                "v1",
+                "global-labels",
+                "available"
+              ]
+            },
+            "description": "Haalt de globale labels op die voor Navigator beschikbaar zijn. In de HAR werden 562 labels teruggegeven met o.a. id, platformId, identifier, text, color en isVisible."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Response is an array', () => pm.expect(pm.response.json()).to.be.an('array'));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    }
+  ]
+}

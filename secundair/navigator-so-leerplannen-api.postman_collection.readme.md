@@ -4,7 +4,7 @@
 
 > **Herkomst van deze documentatie:** voor deze API werd **geen documentatie voorzien door Smartschool**. De collectie werd zelf samengesteld op basis van de netwerkverzoeken die de webapplicatie GO! Navigator ([g-o.smartschool.be/navigator/leerplannen](https://g-o.smartschool.be/navigator/leerplannen)) uitvoert, vastgelegd in een HAR-export. Ze bevat enkel routes die in die sessie effectief voorkwamen.
 >
-> Omdat de API niet publiek gedocumenteerd is, kunnen routes en responsemodellen zonder aankondiging wijzigen. Dit in tegenstelling tot de [Curricula API voor het basisonderwijs](navigator-bao-curricula-api.openapi.yaml), waarvoor wel officiële documentatie beschikbaar is.
+> Omdat de API niet publiek gedocumenteerd is, kunnen routes en responsemodellen zonder aankondiging wijzigen. Dit in tegenstelling tot de [Curricula API voor het basisonderwijs](../basisonderwijs/navigator-bao-curricula-api.openapi.yaml), waarvoor wel officiële documentatie beschikbaar is.
 
 ## Importeren
 

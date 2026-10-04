@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GO! Navigator Demo</title>
+    <title>GO! Leerplannen API</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/site.css">
 </head>
 
 <body class="bg-light">
@@ -19,208 +17,93 @@
     <div class="container py-5">
 
         <!-- Header -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="mb-4">
 
-            <div>
-                <h1 class="mb-1">
-                    GO! Navigator Demo
-                </h1>
+            <h1 class="mb-1">
+                GO! Leerplannen API
+            </h1>
 
-                <p class="text-muted mb-0">
-                    Demo van de integratie met de GO! Navigator BaO Selector
-                </p>
-            </div>
-
-            <button
-                id="newAssignment"
-                type="button"
-                class="btn btn-primary">
-
-                Nieuwe opdracht
-
-            </button>
+            <p class="text-muted mb-0">
+                Technische documentatie en voorbeelden om met de GO!-leerplannen te werken
+            </p>
 
         </div>
 
 
-        <!-- Assignment list -->
-        <div class="card shadow-sm">
+        <div class="row g-4">
 
-            <div class="card-header">
-                Opdrachten
-            </div>
+            <!-- Basisonderwijs -->
+            <div class="col-md-6">
 
-            <div class="card-body p-0">
+                <div class="card shadow-sm h-100">
 
-                <table class="table table-hover align-middle mb-0">
+                    <div class="card-header">
+                        Basisonderwijs
+                    </div>
 
-                    <thead class="table-light">
+                    <div class="card-body">
 
-                        <tr>
-                            <th>
-                                Titel
-                            </th>
+                        <p>
+                            De officieel gedocumenteerde Curriculum API van GO! Navigator BaO en de
+                            Navigator BaO Selector om leerplandoelen te laten kiezen.
+                        </p>
 
-                            <th style="width: 120px;">
-                                Doelen
-                            </th>
+                        <a
+                            href="./basisonderwijs/selector-demo/"
+                            class="btn btn-primary mb-2">
 
-                            <th style="width: 150px;">
-                            </th>
-                        </tr>
+                            Demo Navigator BaO Selector
 
-                    </thead>
+                        </a>
 
-                    <tbody id="assignments">
+                        <a
+                            href="https://github.com/stanbilliet/Go-leerplannen-api-v1/tree/master/basisonderwijs"
+                            class="btn btn-outline-primary mb-2">
 
-                        <tr id="emptyAssignments">
+                            Documentatie
 
-                            <td
-                                colspan="3"
-                                class="text-center text-muted py-4">
+                        </a>
 
-                                Nog geen opdrachten.
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- Assignment modal -->
-    <div
-        class="modal fade"
-        id="assignmentModal"
-        tabindex="-1"
-        aria-labelledby="assignmentModalTitle"
-        aria-hidden="true">
-
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content">
-
-
-                <!-- Modal header -->
-                <div class="modal-header">
-
-                    <h5
-                        class="modal-title"
-                        id="assignmentModalTitle">
-
-                        Nieuwe opdracht
-
-                    </h5>
-
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Sluiten">
-                    </button>
+                    </div>
 
                 </div>
 
-
-                <!-- Modal body -->
-                <div class="modal-body">
+            </div>
 
 
-                    <!-- Assignment title -->
-                    <div class="mb-4">
+            <!-- Secundair onderwijs -->
+            <div class="col-md-6">
 
-                        <label
-                            for="assignmentTitle"
-                            class="form-label">
+                <div class="card shadow-sm h-100">
 
-                            Titel
-
-                        </label>
-
-                        <input
-                            id="assignmentTitle"
-                            type="text"
-                            class="form-control"
-                            placeholder="Geef de opdracht een titel">
-
+                    <div class="card-header">
+                        Secundair onderwijs
                     </div>
 
+                    <div class="card-body">
 
-                    <!-- Goals -->
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p>
+                            Een JSON-export van de GO!-leerplannen en de Leerplannen API van GO! Navigator.
+                            Voor deze API werd geen documentatie voorzien door Smartschool.
+                        </p>
 
-                        <div>
+                        <a
+                            href="./secundair/GO-leerplannen-secundair_2025-09.json"
+                            class="btn btn-outline-primary mb-2">
 
-                            <label class="form-label mb-0">
-                                Leerplandoelen
-                            </label>
+                            JSON-export (sept. 2025)
 
-                            <div class="form-text">
-                                Selecteer één of meerdere doelen via GO! Navigator.
-                            </div>
+                        </a>
 
-                        </div>
+                        <a
+                            href="https://github.com/stanbilliet/Go-leerplannen-api-v1/tree/master/secundair"
+                            class="btn btn-outline-primary mb-2">
 
-                        <button
-                            id="selectGoals"
-                            type="button"
-                            class="btn btn-outline-primary">
+                            Documentatie
 
-                            Doelen selecteren
-
-                        </button>
+                        </a>
 
                     </div>
-
-
-                    <!-- No goals selected -->
-                    <div
-                        id="noGoals"
-                        class="alert alert-secondary mb-0">
-
-                        Nog geen doelen geselecteerd.
-
-                    </div>
-
-
-                    <!-- Selected goal list -->
-                    <ul
-                        id="goalList"
-                        class="list-group">
-                    </ul>
-
-
-                </div>
-
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-
-                        Annuleren
-
-                    </button>
-
-                    <button
-                        id="saveAssignment"
-                        type="button"
-                        class="btn btn-primary">
-
-                        Opslaan
-
-                    </button>
 
                 </div>
 
@@ -229,18 +112,6 @@
         </div>
 
     </div>
-
-
-    <!-- Bootstrap -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-    </script>
-
-    <!-- Application -->
-    <script
-        type="module"
-        src="./js/app.js">
-    </script>
 
 </body>
 
